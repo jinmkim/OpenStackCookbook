@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
 
   # Defaults
   config.vm.box = "bunchc/trusty-x64"
-  config.vm.synced_folder ".", "/vagrant", type: "nfs"
+  config.vm.synced_folder ".", "/vagrant", type: "rsync"
 
   # VirtualBox
   config.vm.provider :virtualbox do |vbox, override|
@@ -34,7 +34,7 @@ Vagrant.configure("2") do |config|
     if Vagrant::Util::Platform.windows?
       override.vm.synced_folder ".", "/vagrant", mount_options: ["dmode=700","fmode=700"]
     else
-      override.vm.synced_folder ".", "/vagrant", type: "nfs"
+      override.vm.synced_folder ".", "/vagrant", type: "rsync"
     end
   end
 
